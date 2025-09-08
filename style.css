@@ -1,74 +1,82 @@
-function collectGearStats(prefix) {
-  let stats = [];
-  for (let i = 1; i <= 4; i++) {
-    let type = document.getElementById(`${prefix}_stat${i}`).value;
-    let val = parseFloat(document.getElementById(`${prefix}_val${i}`).value) || 0;
-    stats.push({ type, val });
-  }
-  return stats;
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #eee;
+  text-align: center;
+  padding: 20px;
 }
 
-function sumStats(allGearStats) {
-  let totals = {};
-  allGearStats.forEach(piece => {
-    piece.forEach(line => {
-      if (!totals[line.type]) totals[line.type] = 0;
-      totals[line.type] += line.val;
-    });
-  });
-  return totals;
+h1 {
+  margin-bottom: 15px;
 }
 
-buildBtn.addEventListener("click", () => {
-  let helmStats = collectGearStats("helm");
-  let armorStats = collectGearStats("armor");
-  let glovesStats = collectGearStats("gloves");
-  let bootsStats = collectGearStats("boots");
-  let weaponStats = collectGearStats("weapon");
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
 
-  let totals = sumStats([helmStats, armorStats, glovesStats, bootsStats, weaponStats]);
+.tablink {
+  background: #333;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px 15px;
+  cursor: pointer;
+}
 
-  canvas.width = 480;
-  canvas.height = 640;
-  ctx.fillStyle = "#1a1a1a";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+.tablink.active {
+  background: #66ccff;
+  color: #000;
+  font-weight: bold;
+}
 
-  ctx.fillStyle = "#ffd700";
-  ctx.font = "20px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText("Hunter Gear Sheet", 240, 40);
+.tabcontent {
+  display: none;
+  padding: 10px;
+  border: 1px solid #444;
+  background: #222;
+  margin-top: 10px;
+}
 
-  ctx.textAlign = "left";
-  ctx.fillStyle = "#66ccff";
-  ctx.font = "16px Arial";
-  let y = 100;
-  ctx.fillText("Totals:", 40, y);
-  y += 30;
-  Object.entries(totals).forEach(([type, val]) => {
-    ctx.fillText(`${type}: ${val}%`, 40, y);
-    y += 25;
-  });
-});
+.tabcontent.active {
+  display: block;
+}
 
-// Reset
-resetBtn.addEventListener("click", () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-});
+.gear-block label {
+  display: block;
+  margin: 10px 0;
+}
 
-// Download
-downloadBtn.addEventListener("click", () => {
-  const link = document.createElement("a");
-  link.download = "hunter_gear_sheet.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-});
+select, input[type="number"] {
+  margin-left: 5px;
+  padding: 3px;
+}
 
-// Tab switching
-document.querySelectorAll(".tablink").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".tablink").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".tabcontent").forEach(c => c.classList.remove("active"));
-    btn.classList.add("active");
-    document.getElementById(btn.dataset.tab).classList.add("active");
-  });
-});
+#calcBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #66ccff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#results {
+  margin-top: 25px;
+  background: #222;
+  padding: 15px;
+  border: 1px solid #444;
+}
+
+#results ul {
+  list-style: none;
+  padding: 0;
+}
+
+#results li {
+  margin: 5px 0;
+  font-size: 18px;
+}
