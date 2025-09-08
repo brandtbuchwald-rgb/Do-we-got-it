@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EHT Gear Optimizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>EHT Gear Optimizer</h1>
+    <p>Input your stats → Build infographic</p>
+
+    <div class="inputs">
+      <h3>Base Stats</h3>
+      <label>ATK: <input id="atk" type="number" value="550"></label>
+      <label>DEF: <input id="def" type="number" value="550"></label>
+      <label>HP: <input id="hp" type="number" value="12000"></label>
+
+      <h3>Random Options</h3>
+      <label>Option 1: <input id="opt1" type="text" value="Attack Speed 12%"></label>
+      <label>Option 2: <input id="opt2" type="text" value="Crit Chance 14%"></label>
+      <label>Option 3: <input id="opt3" type="text" value="Evasion 16%"></label>
+      <label>Option 4: <input id="opt4" type="text" value="Crit Damage 45%"></label>
+    </div>
+
+    <div class="buttons">
+      <button id="build">Build Infographic</button>
+      <button id="reset">Reset</button>
+      <button id="download">Download</button>
+    </div>
+
+    <canvas id="infographic"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
