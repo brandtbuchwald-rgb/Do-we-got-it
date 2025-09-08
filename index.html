@@ -7,81 +7,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>EHT Gear Optimizer</h1>
-    <p>Select gear → enter stats → Build infographic</p>
+  <h1>Evil Hunter Tycoon - Gear Optimizer</h1>
 
-    <!-- Tabs -->
-    <div class="tabs">
-      <button class="tablink active" data-tab="helm">Helm</button>
-      <button class="tablink" data-tab="armor">Armor</button>
-      <button class="tablink" data-tab="gloves">Gloves</button>
-      <button class="tablink" data-tab="boots">Boots</button>
-      <button class="tablink" data-tab="weapon">Weapon</button>
-    </div>
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tablink active" data-tab="helm">Helm</button>
+    <button class="tablink" data-tab="armor">Armor</button>
+    <button class="tablink" data-tab="gloves">Gloves</button>
+    <button class="tablink" data-tab="boots">Boots</button>
+    <button class="tablink" data-tab="weapon">Weapon</button>
+  </div>
 
-    <!-- Helm -->
-    <div id="helm" class="tabcontent active">
-      <h3>Helm</h3>
-      <div class="gear-block">
-        <label>Line 1: <select id="helm_stat1"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="helm_val1" value="12"></label>
-        <label>Line 2: <select id="helm_stat2"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="helm_val2" value="15"></label>
-        <label>Line 3: <select id="helm_stat3"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="helm_val3" value="10"></label>
-        <label>Line 4: <select id="helm_stat4"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="helm_val4" value="20"></label>
-      </div>
-    </div>
+  <!-- Gear sections -->
+  <div id="helm" class="tabcontent active">
+    <h3>Helm</h3>
+    <div class="gear-block" data-gear="helm"></div>
+  </div>
 
-    <!-- Armor -->
-    <div id="armor" class="tabcontent">
-      <h3>Armor</h3>
-      <div class="gear-block">
-        <label>Line 1: <select id="armor_stat1"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="armor_val1" value="12"></label>
-        <label>Line 2: <select id="armor_stat2"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="armor_val2" value="15"></label>
-        <label>Line 3: <select id="armor_stat3"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="armor_val3" value="10"></label>
-        <label>Line 4: <select id="armor_stat4"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="armor_val4" value="20"></label>
-      </div>
-    </div>
+  <div id="armor" class="tabcontent">
+    <h3>Armor</h3>
+    <div class="gear-block" data-gear="armor"></div>
+  </div>
 
-    <!-- Gloves -->
-    <div id="gloves" class="tabcontent">
-      <h3>Gloves</h3>
-      <div class="gear-block">
-        <label>Line 1: <select id="gloves_stat1"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="gloves_val1" value="12"></label>
-        <label>Line 2: <select id="gloves_stat2"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="gloves_val2" value="15"></label>
-        <label>Line 3: <select id="gloves_stat3"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="gloves_val3" value="10"></label>
-        <label>Line 4: <select id="gloves_stat4"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="gloves_val4" value="20"></label>
-      </div>
-    </div>
+  <div id="gloves" class="tabcontent">
+    <h3>Gloves</h3>
+    <div class="gear-block" data-gear="gloves"></div>
+  </div>
 
-    <!-- Boots -->
-    <div id="boots" class="tabcontent">
-      <h3>Boots</h3>
-      <div class="gear-block">
-        <label>Line 1: <select id="boots_stat1"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="boots_val1" value="12"></label>
-        <label>Line 2: <select id="boots_stat2"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="boots_val2" value="15"></label>
-        <label>Line 3: <select id="boots_stat3"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="boots_val3" value="10"></label>
-        <label>Line 4: <select id="boots_stat4"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="boots_val4" value="20"></label>
-      </div>
-    </div>
+  <div id="boots" class="tabcontent">
+    <h3>Boots</h3>
+    <div class="gear-block" data-gear="boots"></div>
+  </div>
 
-    <!-- Weapon -->
-    <div id="weapon" class="tabcontent">
-      <h3>Weapon</h3>
-      <div class="gear-block">
-        <label>Line 1: <select id="weapon_stat1"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="weapon_val1" value="12"></label>
-        <label>Line 2: <select id="weapon_stat2"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="weapon_val2" value="15"></label>
-        <label>Line 3: <select id="weapon_stat3"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="weapon_val3" value="10"></label>
-        <label>Line 4: <select id="weapon_stat4"><option>Attack Speed</option><option>Crit Chance</option><option>Evasion</option><option>Crit Damage</option></select><input type="number" id="weapon_val4" value="20"></label>
-      </div>
-    </div>
+  <div id="weapon" class="tabcontent">
+    <h3>Weapon</h3>
+    <div class="gear-block" data-gear="weapon"></div>
+  </div>
 
-    <div class="buttons">
-      <button id="build">Build Infographic</button>
-      <button id="reset">Reset</button>
-      <button id="download">Download</button>
-    </div>
+  <!-- Button -->
+  <button id="calcBtn">Calculate Stats</button>
 
-    <canvas id="infographic"></canvas>
+  <!-- Results -->
+  <div id="results">
+    <h2>Total Stats</h2>
+    <ul id="resultsList"></ul>
   </div>
 
   <script src="script.js"></script>
