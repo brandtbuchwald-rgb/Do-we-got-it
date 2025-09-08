@@ -1,94 +1,74 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #111;
-  color: #eee;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.container {
-  padding: 15px;
-  max-width: 500px;
-  margin: auto;
-}
-
-h1 {
-  color: #66ccff;
-  font-size: 22px;
-}
-
-.inputs {
-  margin: 15px 0;
-  text-align: left;
-  background: #1e1e1e;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #333;
-}
-
-label {
-  display: block;
-  margin: 8px 0;
-  font-size: 14px;
-}
-
-input {
-  background: #222;
-  color: #eee;
-  border: 1px solid #444;
-  padding: 5px;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 15px 0;
-}
-
-button {
-  background: #222;
-  color: #fff;
-  border: 1px solid #555;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #333;
-}
-
-button#download {
-  background: #caa64d;
-  color: #000;
-  font-weight: bold;
-}
-
-button#download:hover {
-  background: #e0c56d;
-}
-
-canvas {
-  background: #000;
-  border: 2px solid #444;
-  margin-top: 20px;
-  max-width: 100%;
-  height: auto;
-}
-
-/* Larger screens: buttons side by side */
-@media (min-width: 600px) {
-  .buttons {
-    flex-direction: row;
-    justify-content: center;
+function collectGearStats(prefix) {
+  let stats = [];
+  for (let i = 1; i <= 4; i++) {
+    let type = document.getElementById(`${prefix}_stat${i}`).value;
+    let val = parseFloat(document.getElementById(`${prefix}_val${i}`).value) || 0;
+    stats.push({ type, val });
   }
-  button {
-    flex: 1;
-  }
+  return stats;
 }
+
+function sumStats(allGearStats) {
+  let totals = {};
+  allGearStats.forEach(piece => {
+    piece.forEach(line => {
+      if (!totals[line.type]) totals[line.type] = 0;
+      totals[line.type] += line.val;
+    });
+  });
+  return totals;
+}
+
+buildBtn.addEventListener("click", () => {
+  let helmStats = collectGearStats("helm");
+  let armorStats = collectGearStats("armor");
+  let glovesStats = collectGearStats("gloves");
+  let bootsStats = collectGearStats("boots");
+  let weaponStats = collectGearStats("weapon");
+
+  let totals = sumStats([helmStats, armorStats, glovesStats, bootsStats, weaponStats]);
+
+  canvas.width = 480;
+  canvas.height = 640;
+  ctx.fillStyle = "#1a1a1a";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#ffd700";
+  ctx.font = "20px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("Hunter Gear Sheet", 240, 40);
+
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#66ccff";
+  ctx.font = "16px Arial";
+  let y = 100;
+  ctx.fillText("Totals:", 40, y);
+  y += 30;
+  Object.entries(totals).forEach(([type, val]) => {
+    ctx.fillText(`${type}: ${val}%`, 40, y);
+    y += 25;
+  });
+});
+
+// Reset
+resetBtn.addEventListener("click", () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+// Download
+downloadBtn.addEventListener("click", () => {
+  const link = document.createElement("a");
+  link.download = "hunter_gear_sheet.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+});
+
+// Tab switching
+document.querySelectorAll(".tablink").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tablink").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tabcontent").forEach(c => c.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+  });
+});
